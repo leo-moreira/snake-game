@@ -1,3 +1,4 @@
+
 # Snake Game 🐍
 
 Este é um jogo clássico da cobrinha (Snake Game) desenvolvido em **HTML**, **CSS** e **JavaScript**. Controle a cobra, colete comida e evite colidir consigo mesmo ou com as bordas do jogo.
@@ -17,36 +18,60 @@ Este é um jogo clássico da cobrinha (Snake Game) desenvolvido em **HTML**, **C
    - Colidir com as bordas da tela.
    - Colidir com o próprio corpo.
 
+---
 
-✨ Recursos Implementados
+## 📂 Estrutura do Projeto
 
-	•	Controle simples usando o teclado.
-	•	Comida aparece aleatoriamente na tela.
-	•	A cobra cresce cada vez que come.
-	•	Detecção de colisões:
-	•	Com as bordas do jogo.
-	•	Com o próprio corpo.
-	•	Exibição de pontuação no fim do jogo.
+```plaintext
+.
+├── snake.html  # Código principal do jogo
+```
 
-🚀 Como Executar
+---
 
-	1.	Faça o download ou clone este repositório:
+## ✨ Recursos Implementados
 
-git clone https://github.com/seu-usuario/snake-game.git
+- Controle simples usando o teclado.
+- Comida aparece aleatoriamente na tela.
+- A cobra cresce cada vez que come.
+- Detecção de colisões:
+  - Com as bordas do jogo.
+  - Com o próprio corpo.
+- Exibição de pontuação no fim do jogo.
 
+---
 
-	2.	Abra o arquivo index.html diretamente em um navegador.
+## 🚀 Como Executar
 
-🔧 Personalizações Possíveis
+1. Faça o download ou clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/snake-game.git
+   ```
+2. Abra o arquivo `index.html` diretamente em um navegador.
+
+---
+
+## 🔧 Personalizações Possíveis
 
 Você pode melhorar ou personalizar o jogo adicionando:
-	•	Um sistema de níveis com dificuldade crescente (aumentando a velocidade).
-	•	Um contador de tempo ou pontuação exibido na tela.
-	•	Um botão de reiniciar sem precisar recarregar a página.
-	•	Sons ao coletar comida ou ao perder o jogo.
+- Um sistema de níveis com dificuldade crescente (aumentando a velocidade).
+- Um contador de tempo ou pontuação exibido na tela.
+- Um botão de reiniciar sem precisar recarregar a página.
+- Sons ao coletar comida ou ao perder o jogo.
 
-📜 Licença
+---
+
+## 📜 Licença
 
 Este projeto é de código aberto e você pode usá-lo livremente para aprender ou criar suas próprias variações.
+
+---
+
+## 📬 Contato
+
+Caso tenha dúvidas ou sugestões, entre em contato:
+- **GitHub**: [leo-moreira](https://github.com/leo-moreira)
+
+---
 
 Divirta-se jogando e criando! 🎮🐍
