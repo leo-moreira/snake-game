@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<cabeca>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>cobra Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #000;
+            background-color: #f0f0f0;
+        }
+    </style>
+</cabeca>
+
+<body>
+    <canvas id="gameCanvas" width="800" height="800"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        let intervalo = 400;
+
+        const bloco = 40;
+        let cobra = [{ x: 10 * bloco, y: 10 * bloco }];
+        let direcao = "RIGHT";
+        let comida = {
+            x: Math.floor(Math.random() * (canvas.width / bloco)) * bloco,
+            y: Math.floor(Math.random() * (canvas.height / bloco)) * bloco
+        };
+        let score = 0;
+
+        // Função para desenhar a cobra
+        function desenharCobra() {
+            cobra.forEach((segment, index) => {
+                ctx.fillStyle = corDoBloco(index);
+                ctx.fillRect(segment.x, segment.y, bloco, bloco);
+                ctx.strokeStyle = "darkgreen";
+                ctx.strokeRect(segment.x, segment.y, bloco, bloco);
+            });
+        }
+
+        function corDoBloco(index) {
+            return index === 0 ? "green" : "lightgreen";
+        }
+
+        // Função para desenhar a comida
+        function desenharComida() {
+            ctx.fillStyle = "red";
+            ctx.fillRect(comida.x, comida.y, bloco, bloco);
+        }
+
+        function atualizar() {
+            const cabeca = { ...cobra[0] };
+            mover(cabeca);
+
+            if (cabeca.x === comida.x && cabeca.y === comida.y) {
+                score++;
+                comida = {
+                    x: Math.floor(Math.random() * (canvas.width / bloco)) * bloco,
+                    y: Math.floor(Math.random() * (canvas.height / bloco)) * bloco
+                };
+                intervalo = intervalo - 15;
+                game = setInterval(gameLoop, intervalo);
+            } else {
+                cobra.pop();
+            }
+        }
+
+        function mover(cabeca) {
+
+            if (direcao === "LEFT") cabeca.x -= bloco;
+            if (direcao === "UP") cabeca.y -= bloco;
+            if (direcao === "RIGHT") cabeca.x += bloco;
+            if (direcao === "DOWN") cabeca.y += bloco;
+
+            cobra.unshift(cabeca);
+        }
+
+        function verificarColisao() {
+            const cabeca = { ...cobra[0] };
+            if (
+                cabeca.x < 0 ||
+                cabeca.y < 0 ||
+                cabeca.x >= canvas.width ||
+                cabeca.y >= canvas.height ||
+                cobra.slice(1).some(segment => segment.x === cabeca.x && segment.y === cabeca.y)
+            ) {
+                alert("Game Over! Pontuação: " + score);
+                reiniciar();
+            }
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            verificarColisao();
+            desenharCobra();
+            desenharComida();
+            atualizar();
+        }
+
+        function reiniciar() {
+            cobra = [{ x: 10 * bloco, y: 10 * bloco }]; // posição inicial da cobra
+            direcao = "RIGHT"; // direção inicial
+            comida = {
+                x: Math.floor(Math.random() * (canvas.width / bloco)) * bloco,
+                y: Math.floor(Math.random() * (canvas.height / bloco)) * bloco
+            };
+            score = 0;
+            intervalo = 400;
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft" && direcao !== "RIGHT") direcao = "LEFT";
+            if (event.key === "ArrowUp" && direcao !== "DOWN") direcao = "UP";
+            if (event.key === "ArrowRight" && direcao !== "LEFT") direcao = "RIGHT";
+            if (event.key === "ArrowDown" && direcao !== "UP") direcao = "DOWN";
+        });
+
+        let game = setInterval(gameLoop, intervalo);
+    </script>
+</body>
+
+</html>
